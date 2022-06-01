@@ -1,0 +1,65 @@
+\def\fontheight{11pt}
+
+%class
+\documentclass[a4paper, \fontheight]{article}
+
+%packages
+\usepackage[czech]{babel}           %language
+\usepackage[a4paper, text={17cm,25cm}, left=2cm, top=2.5cm]{geometry}		%layout
+\usepackage{times}					%font
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{longtable, booktabs}
+\usepackage{tikz}
+
+%encoding
+\usepackage[IL2]{fontenc}           %font encoding
+\usepackage[utf8]{inputenc}         %script encoding
+
+%tt text
+\newenvironment{alltt}{\ttfamily}{\par}
+
+\begin{document}
+	\begin{titlepage}
+		\begin{center}		
+			\textsc{{\fontsize{80}{0}\selectfont CIA}\\[2em]
+				\Huge Central Intelligence Agency\\[2.5em]}
+				
+			\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.6]{sources/CIA_logo.pdf}
+			\end{figure}
+		\end{center}	
+		\vfill
+		\noindent
+		\texttt{\LARGE
+				Operace: GHOST VERTEX\\[0.4em]
+				Lokace: Základna CIA, Hoštejn\\[0.4em]
+				ID: xxxxxxxxx
+				}	
+	\end{titlepage} 
+
+
+	\centering
+	\ttfamily
+	\setlength\LTleft{0pt}
+	\setlength\LTright{0pt}
+	\begin{longtable}{l l @{\extracolsep{\fill}} l}
+		\textbf{Datum}		&		\textbf{Záznam signálu}	&		\textbf{Zaznamenané lokace} \\ \midrule	\endhead
+		02/05/2022	&
+		\resizebox{!}{\fontheight}{
+		\begin{tikzpicture}
+			\draw [draw=none] (0,0) -- (0,4);
+			\draw [line width=2mm, black] plot [smooth, tension=0.7] coordinates { (0,0) (60,4)}; \end{tikzpicture}}		&		A1, B2, B8\\ \midrule
+	
+		02/05/2022	&	15d61w5d1wws516wqswq61q		&		A1, B2, B8\\ \midrule
+		02/05/2022	&	15d61w5d1wws516wqswq61q		&		A1, B2, B8\\
+		\bottomrule
+	\end{longtable}
+
+
+	\pagebreak
+	%bonusove info
+\end{document}
