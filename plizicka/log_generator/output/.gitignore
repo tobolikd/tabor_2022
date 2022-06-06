@@ -6,3 +6,4 @@
 !sources/
 !*.tex
 !*.pdf
+!Makefile
