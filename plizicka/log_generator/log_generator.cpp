@@ -12,10 +12,9 @@
 #include "log_generator.h"
 
 #define OUT_FILENAME "./output/example.tex"
-#define TEX_TITLEPAGE "./sources/template0.tex"
-#define TEX_BEGIN_TABLE "./sources/template1.tex"
-#define TEX_END_TABLE "./sources/template2.tex"
-#define TEX_END_DOC "./sources/template3.tex"
+#define TEX_TITLEPAGE "./sources/point_title.tex"
+#define TEX_BEGIN_TABLE "./sources/point_table.tex"
+#define TEX_END_DOC "./sources/point_end.tex"
 
 bool write_out(std::ofstream &out, const char *filename);
 void write_logs(std::ofstream &out, std::list<log_t> &logs);
@@ -27,7 +26,7 @@ int main(int argc, char **argv)
     std::ofstream out(OUT_FILENAME, std::ios::out);
     if (!out.is_open())
     {
-        std::cerr << "ERR: failed to open file\n";
+        std::cerr << "ERR: failed to open file (" << OUT_FILENAME << ")\n";
         return 1;
     }
 
@@ -62,15 +61,6 @@ int main(int argc, char **argv)
     write_logs(out, log_list);
 
     // write end of table
-    if (!write_out(out, TEX_END_TABLE))
-    {
-        out.close();
-        return 1;
-    }
-
-    out << "really secret page\n";
-
-    // end document
     if (!write_out(out, TEX_END_DOC))
     {
         out.close();
@@ -87,7 +77,7 @@ bool write_out(std::ofstream &out, const char *filename)
 
     if (!tmp.is_open())
     {
-        std::cerr << "ERR: failed to open file\n";
+        std::cerr << "ERR: failed to open file (" << filename << ")\n";
         return false;
     }
 
