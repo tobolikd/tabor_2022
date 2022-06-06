@@ -4,6 +4,4 @@
 #except
 !.gitignore
 !sources/
-!*.tex
-!*.pdf
 !Makefile
