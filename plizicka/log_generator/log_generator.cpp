@@ -16,11 +16,43 @@
 #define TEX_BEGIN_TABLE "./sources/point_table.tex"
 #define TEX_END_DOC "./sources/point_end.tex"
 
-bool write_out(std::ofstream &out, const char *filename);
+bool write_from_file(std::ofstream &out, const char *filename);
 void write_logs(std::ofstream &out, std::list<log_t> &logs);
 void init_logs(std::list<log_t> &logs, int count);
+int generate_example();
+int generate_all();
+int generate_station(doc_t &station);
+int generate_team(team_logs_t &logs);
 
-int main(int argc, char **argv)
+#define ONLY_EXAMPLE true
+
+int main()
+{
+#if ONLY_EXAMPLE
+        return generate_example();
+#else
+        return generate_all();
+#endif //ONLY_EXAMPLE
+}
+
+int generate_all()
+{
+    //TODO
+    return 0;
+}
+
+int generate_station(doc_t &station)
+{
+    return 0;
+}
+
+int generate_team(team_logs_t &logs)
+{
+    return 0;
+}
+
+#if ONLY_EXAMPLE
+int generate_example()
 {
     //output file
     std::ofstream out(OUT_FILENAME, std::ios::out);
@@ -35,14 +67,12 @@ int main(int argc, char **argv)
 
     // local vars
     doc_t document;
-    std::list<log_t> log_list;
 
     // init
     document.init_random();
-    init_logs(log_list, document.log_count);
 
     // write titlepage
-    if (!write_out(out, TEX_TITLEPAGE))
+    if (!write_from_file(out, TEX_TITLEPAGE))
     {
         out.close();
         return 1;
@@ -51,17 +81,17 @@ int main(int argc, char **argv)
     out << document.id;
 
     // write begining of table
-    if (!write_out(out, TEX_BEGIN_TABLE))
+    if (!write_from_file(out, TEX_BEGIN_TABLE))
     {
         out.close();
         return 1;
     }
     // ↓↓↓table content↓↓↓
 
-    write_logs(out, log_list);
+    write_logs(out, document.log_list);
 
     // write end of table
-    if (!write_out(out, TEX_END_DOC))
+    if (!write_from_file(out, TEX_END_DOC))
     {
         out.close();
         return 1;
@@ -70,8 +100,9 @@ int main(int argc, char **argv)
     out.close();
     return 0;
 }
+#endif //ONLY_EXAMPLE
 
-bool write_out(std::ofstream &out, const char *filename)
+bool write_from_file(std::ofstream &out, const char *filename)
 {
     std::ofstream tmp(filename, std::ios::in);
 
@@ -89,6 +120,8 @@ bool write_out(std::ofstream &out, const char *filename)
 
 void write_logs(std::ofstream &out, std::list<log_t> &logs)
 {
+    logs.sort();
+
     for (std::list<log_t>::iterator item = logs.begin(); item != logs.end(); item++)
     {
         out << item->date.to_string()
@@ -96,19 +129,10 @@ void write_logs(std::ofstream &out, std::list<log_t> &logs)
             << item->time.to_string()
             << " & "
             << item->curve.to_latex()
+
             << " & "
             << item->locations.to_string()
             << " \\\\"
             << (std::next(item) == logs.end() ? "\\bottomrule\n\n" : "\\midrule\n\n");
-    }
-}
-
-void init_logs(std::list<log_t> &logs, int count)
-{
-    log_t tmp;
-    for (int i = 0; i < count; i++)
-    {
-        tmp.init_random();
-        logs.push_back(tmp);
     }
 }
