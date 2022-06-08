@@ -4,6 +4,7 @@
 #include <string>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <list>
 
 #define CURVE_STEP 2
 #define CURVE_LENGTH 40
@@ -243,12 +244,23 @@ struct curve_t
 struct coords_t
 {
     char letter;
-    int number;
+    uint8_t number;
+
+    public: void add_coords(char c, uint8_t n)
+    {
+        letter = c;
+        number = n;
+    }
 
     public: void init_random()
     {
         letter = get_rand(LOCATION_MIN_LETTER, LOCATION_MAX_LETTER);
         number = get_rand(LOCATION_MIN_NUM, LOCATION_MAX_NUM);
+    }
+    
+    public: std::string to_string()
+    {
+        return std::to_string(letter) + std::to_string(number);
     }
 
     bool operator ==(const coords_t coords) const
@@ -404,7 +416,7 @@ struct team_logs_t
     log_t logs[CAMP_COUNT];
     locations_t false_locations[CAMP_COUNT][3];
 
-    team_logs_t(camp_locations_t &camps)
+    public: void add_locations (camp_locations_t &camps)
     {
         for (uint8_t i = 0; i < CAMP_COUNT; i++)
         {
@@ -424,6 +436,10 @@ struct team_logs_t
         log_t tmp_log;
 
         bool station_min[STATION_COUNT];
+
+        for (uint8_t i = 0; i < STATION_COUNT; i++)
+            station_min[i] = true;
+
         uint8_t min_station_cnt = STATION_COUNT;
         uint8_t used_idxs[3];
 
@@ -450,6 +466,10 @@ struct team_logs_t
                 tmp_log.locations.shuffle();
 
                 used_idxs[i] = get_random_station(station_min, min_station_cnt, used_idxs);
+
+                station_min[used_idxs[i]] = false;
+                min_station_cnt--;
+
                 stations[used_idxs[i]].log_list.push_back(tmp_log);
             }
 
@@ -478,7 +498,7 @@ struct team_logs_t
         
         do
         {
-            idx = get_rand(0, station_cnt - 1);
+            idx = get_rand(1, station_cnt);
 
             for (uint8_t i = 0; i < STATION_COUNT; i++)
             {
