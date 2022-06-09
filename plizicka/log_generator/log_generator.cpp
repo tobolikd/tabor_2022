@@ -113,8 +113,8 @@ int generate_admin(team_logs_t logs[], std::string teams[])
         out.close();
         return 1;
     }
-    // ↓↓↓table content↓↓↓
 
+    //table content
     //for each team
     for (uint8_t team_num = 0; team_num < TEAM_COUNT; team_num++)
     {
@@ -203,8 +203,8 @@ int generate_team(team_logs_t &logs, const std::string team_name)
         out.close();
         return 1;
     }
-    // ↓↓↓table content↓↓↓
 
+    //table content
     for (uint8_t log = 0; log < CAMP_COUNT; log++)
     {
         out << "\t\t\t&& \\multirow[c]{3}{*}{" << logs.logs[log].curve.to_latex() << "} &&&&&&& \\\\ \\cline{4-9}\n"
@@ -249,8 +249,8 @@ int generate_station(doc_t &document, const std::string filename)
         out.close();
         return 1;
     }
-    // ↓↓↓table content↓↓↓
-
+    
+    //table content
     write_logs(out, document.log_list);
 
     // write end of table
