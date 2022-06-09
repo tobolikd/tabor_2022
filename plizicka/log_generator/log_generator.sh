@@ -7,30 +7,33 @@ YELLOW='\033[0;33m'       # Yellow
 
 
 # compile project
-printf "\n$(GREEN)Compilining project$(NO_COLOR)\n"
+printf "\n${GREEN}Compiling project${NO_COLOR}\n"
 make || (print_exitcodes && exit 1)
-printf "$(GREEN)DONE$(NO_COLOR)\n"
+printf "${GREEN}DONE${NO_COLOR}\n"
 
 
-# run project
-printf "\n$(GREEN)Running project$(NO_COLOR)\n"
+printf "\n${GREEN}Cleaning output dir${NO_COLOR}\n"
 # destroy everything living
 cd ./output
 make purge
 cd ..
+printf "${GREEN}DONE${NO_COLOR}\n"
 
+
+# run project
+printf "\n${GREEN}Running project${NO_COLOR}\n"
 chmod +x log_generator || (print_exitcodes && exit 2)
 ./log_generator || (print_exitcodes && exit 3)
-printf "$(GREEN)DONE$(NO_COLOR)\n"
+printf "${GREEN}DONE${NO_COLOR}\n"
 
 
 # run make to compile tex files
-printf "\n$(GREEN)Compiling tex files in $(YELLOW)./output/$(NO_COLOR)\n"
+printf "\n${GREEN}Compiling tex files in ${YELLOW}./output/${NO_COLOR}\n{\n\n"
 cd ./output
 make || (print_exitcodes && exit 4)
 # clean
 make clean
-printf "$(GREEN)DONE$(NO_COLOR)\n"
+printf "\n}${GREEN}DONE${NO_COLOR}\n"
 
 print_exitcodes()
 {
