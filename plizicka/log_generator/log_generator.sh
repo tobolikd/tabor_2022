@@ -15,7 +15,9 @@ printf "$(GREEN)DONE$(NO_COLOR)\n"
 # run project
 printf "\n$(GREEN)Running project$(NO_COLOR)\n"
 # destroy everything living
-./output/make purge
+cd ./output
+make purge
+cd ..
 
 chmod +x log_generator || (print_exitcodes && exit 2)
 ./log_generator || (print_exitcodes && exit 3)
@@ -24,9 +26,10 @@ printf "$(GREEN)DONE$(NO_COLOR)\n"
 
 # run make to compile tex files
 printf "\n$(GREEN)Compiling tex files in $(YELLOW)./output/$(NO_COLOR)\n"
-./output/make || (print_exitcodes && exit 4)
+cd ./output
+make || (print_exitcodes && exit 4)
 # clean
-./output/make clean
+make clean
 printf "$(GREEN)DONE$(NO_COLOR)\n"
 
 print_exitcodes()
