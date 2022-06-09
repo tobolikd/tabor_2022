@@ -46,20 +46,20 @@ int generate_all()
 {
     camp_locations_t camps;
     camps.locations[0].add_coords('A',0);
-    camps.locations[1].add_coords('A',0);
-    camps.locations[2].add_coords('A',0);
-    camps.locations[3].add_coords('A',0);
-    camps.locations[CAMP_COUNT - 1].add_coords('A',0);
+    camps.locations[1].add_coords('B',1);
+    camps.locations[2].add_coords('C',2);
+    camps.locations[3].add_coords('D',3);
+    camps.locations[CAMP_COUNT - 1].add_coords('E',4);
 
     std::string team_names[TEAM_COUNT];
-    team_names[0] = "alfa";
-    team_names[1] = "beta";
-    team_names[2] = "gama";
-    team_names[3] = "delta";
-    team_names[4] = "omega";
-    team_names[5] = "omikron";
-    team_names[6] = "sigma";
-    team_names[TEAM_COUNT - 1] = "kappa";
+    team_names[0] = "Alfa";
+    team_names[1] = "Beta";
+    team_names[2] = "Gama";
+    team_names[3] = "Delta";
+    team_names[4] = "Epsilon";
+    team_names[5] = "Lambda";
+    team_names[6] = "Omikron";
+    team_names[TEAM_COUNT - 1] = "Sigma";
 
 
 
