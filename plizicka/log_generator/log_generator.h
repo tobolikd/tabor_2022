@@ -4,6 +4,7 @@
 #include <string>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <iostream>
 #include <list>
 
 #define CURVE_STEP 2
@@ -41,6 +42,11 @@
 
 int get_rand(int min, int max);
 
+//month types by day count
+enum Month_type { LONG, SHORT, LAP_DEPENDENT };
+//month lenghts
+const Month_type month_length[12] = { LONG, LAP_DEPENDENT, LONG, SHORT, LONG, SHORT, LONG, LONG, SHORT, LONG, SHORT, LONG };
+
 /**
  * @brief Date type { year, month, day }
  * 
@@ -55,11 +61,6 @@ struct date_t
     int year;
     int month;
     int day;
-
-    //month types by day count
-    enum Month_type { LONG, SHORT, LAP_DEPENDENT };
-    //month lenghts
-    const Month_type month_length[12] = { LONG, LAP_DEPENDENT, LONG, SHORT, LONG, SHORT, LONG, LONG, SHORT, LONG, SHORT, LONG };
 
     //to string in format DD/MM/YYYY
     public: std::string to_string()
@@ -100,6 +101,7 @@ struct date_t
                 break;
             default:
                 //month_length is type Month_type {SHORT, LONG, LAP_DEPENDENT}
+                std::cerr << "\nERR: month type is of unspecified type\n";
                 throw std::exception();
                 break;
             }
@@ -130,6 +132,7 @@ struct date_t
 
         default:
             //month_length is type Month_type {SHORT, LONG, LAP_DEPENDENT}
+            std::cerr << "\nERR: month type is of unspecified type\n";
             throw std::exception();
             break;
         }
@@ -272,7 +275,7 @@ struct coords_t
 struct locations_t
 {
     uint8_t size;
-    coords_t locations[3 * MAX_COMMON_LOCS_CNT + 1];
+    coords_t locations[LOCATION_MAX_COUNT];
 
     public: void init_random()
     {
@@ -300,9 +303,15 @@ struct locations_t
         }while (!check_locations());
     }
 
+    /**
+     * @brief Generate new locations on top of existing
+     * 
+     * @param count count of NEWLY generated locations
+     * @param dont_touch already generated or given locations, init won't touch
+     */
     public: void init_random(uint8_t count, uint8_t dont_touch)
     {
-        size = count;
+        size += count;
 
         do
         {
@@ -429,14 +438,20 @@ struct team_logs_t
         }
     }
 
+    //pushes team logs to random station log list
+    //for each team log creates 3 random false logs (only their locations, the rest is same)
     public: void distrubute_logs(doc_t stations[])
     {
         init_random_false_locations();
 
         log_t tmp_log;
 
+        //indicates which stations have been filled with data in current layer
+        //true if they are free, false if they've been used
+        //after all are used (current layer is filled) the values are reset (in get_random_station())
         bool station_min[STATION_COUNT];
 
+        //set all mins to true
         for (uint8_t i = 0; i < STATION_COUNT; i++)
             station_min[i] = true;
 
@@ -456,24 +471,22 @@ struct team_logs_t
             tmp_log.locations = logs[camp].locations;
             tmp_log.get_value();
 
-            for (uint8_t i = 0; i < 3; i++)
+            for (uint8_t false_location_num = 0; false_location_num < 3; false_location_num++)
             {
-                tmp_log.locations.size = false_locations[camp][i].size + 1;
+                tmp_log.locations.size = false_locations[camp][false_location_num].size + 1;
                 for (uint8_t j = 1; j < tmp_log.locations.size; j++)
                 {
-                    tmp_log.locations.locations[j] = false_locations[camp][i].locations[j-1];
+                    tmp_log.locations.locations[j] = false_locations[camp][false_location_num].locations[j-1];
                 }
                 tmp_log.locations.shuffle();
 
-                used_idxs[i] = get_random_station(station_min, min_station_cnt, used_idxs);
+                used_idxs[false_location_num] = get_random_station(station_min, min_station_cnt, used_idxs);
 
-                station_min[used_idxs[i]] = false;
+                station_min[used_idxs[false_location_num]] = false;
                 min_station_cnt--;
 
-                stations[used_idxs[i]].log_list.push_back(tmp_log);
+                stations[used_idxs[false_location_num]].log_list.push_back(tmp_log);
             }
-
-            camp++;
         }
     }
 
@@ -515,6 +528,13 @@ struct team_logs_t
         return idx;
     }
 
+    /**
+     * @brief Initializes random false locations
+     * Correct location is given in logs[camp].locations.locations[0]
+     * 
+     * Creates random number of common and unique locations (only correct location is implicitly common for all)
+     * Puts these locations to false locations (not the correcr one)
+     */
     private: void init_random_false_locations()
     {
         uint8_t cnt01;
@@ -525,65 +545,128 @@ struct team_logs_t
         uint8_t cnt1;
         uint8_t cnt2;
 
-        uint8_t false0_idx = 0;
-        uint8_t false1_idx = 0;
-        uint8_t false2_idx = 0;
+        uint8_t false0_idx;
+        uint8_t false1_idx;
+        uint8_t false2_idx;
 
+        //for each camp generate false locations
         for (uint8_t camp = 0; camp < CAMP_COUNT; camp++)
         {
+            false0_idx = 0;
+            false1_idx = 0;
+            false2_idx = 0;
+
+            //random number of common locations
             cnt01 = get_rand(MIN_COMMON_LOCS_CNT, MAX_COMMON_LOCS_CNT);
             cnt12 = get_rand(MIN_COMMON_LOCS_CNT, MAX_COMMON_LOCS_CNT);
             cnt20 = get_rand(MIN_COMMON_LOCS_CNT, MAX_COMMON_LOCS_CNT);
 
-            false0_idx = cnt0 = get_rand(std::abs(LOCATION_MIN_COUNT - 1 - cnt01 - cnt20),LOCATION_MAX_COUNT - 1 - cnt01 - cnt20);
-            false1_idx = cnt1 = get_rand(std::abs(LOCATION_MIN_COUNT - 1 - cnt12 - cnt01),LOCATION_MAX_COUNT - 1 - cnt12 - cnt01);
-            false2_idx = cnt2 = get_rand(std::abs(LOCATION_MIN_COUNT - 1 - cnt20 - cnt12),LOCATION_MAX_COUNT - 1 - cnt20 - cnt12);
+            //ramdom number of unique locations
+            cnt0 = get_rand(std::abs(LOCATION_MIN_COUNT - 1 - cnt01 - cnt20),LOCATION_MAX_COUNT - 1 - cnt01 - cnt20);
+            cnt1 = get_rand(std::abs(LOCATION_MIN_COUNT - 1 - cnt12 - cnt01),LOCATION_MAX_COUNT - 1 - cnt12 - cnt01);
+            cnt2 = get_rand(std::abs(LOCATION_MIN_COUNT - 1 - cnt20 - cnt12),LOCATION_MAX_COUNT - 1 - cnt20 - cnt12);
+
+            //set sizes acording to generated counts
+            false_locations[camp][0].size = cnt0 + cnt01 + cnt20;
+            false_locations[camp][1].size = cnt1 + cnt12 + cnt01;
+            false_locations[camp][2].size = cnt2 + cnt20 + cnt12;
+
+            uint8_t size_of_all = 1 + cnt0 + cnt1 + cnt2 + cnt01 + cnt12 + cnt20;
+
+            //init all locations
+            coords_t *common = (coords_t*) malloc((size_of_all) * sizeof(coords_t));
+            //set correct location
+            common[0] = logs[camp].locations.locations[0];
             
-            false_locations[camp][0].init_random(cnt0);
-            false_locations[camp][1].init_random(cnt1);
-            false_locations[camp][2].init_random(cnt2);
-
-            false_locations[camp][0].size += cnt01 + cnt20;
-            false_locations[camp][1].size += cnt12 + cnt01;
-            false_locations[camp][2].size += cnt20 + cnt12;
-
-            locations_t common;
-            common.locations[0] = logs[camp].locations.locations[0];
-            common.init_random(cnt01 + cnt12 + cnt20, 1);
-
-            uint8_t i = 0;
-
-            while (i < cnt01)
+            //init all locations ||1 correct|common 01|common 12|common 20|unique 0|unique 1|unique 2||
+            do
             {
-                false_locations[camp][0].locations[false0_idx];
-                false_locations[camp][1].locations[false1_idx];
+                //don"t touch correct location(1), init rest
+                for (uint8_t i = 1; i < size_of_all; i++)
+                {
+                    common[i].init_random();
+                }
+            } while (!check_locations(common, size_of_all));
+            
+            //skip correct location
+            uint8_t i = 1;
+
+            //fill common 01
+            while (i < cnt01 + 1)
+            {
+                false_locations[camp][0].locations[false0_idx] = common[i];
+                false_locations[camp][1].locations[false1_idx] = common[i];
 
                 false0_idx++;
                 false1_idx++;
                 i++;
             }
 
-            while (i < cnt01 + cnt12)
+            //fill common 12
+            while (i < cnt01 + cnt12 + 1)
             {
-                false_locations[camp][1].locations[false1_idx];
-                false_locations[camp][2].locations[false2_idx];
+                false_locations[camp][1].locations[false1_idx] = common[i];
+                false_locations[camp][2].locations[false2_idx] = common[i];
 
                 false1_idx++;
                 false2_idx++;
                 i++;
             }
 
-            while (i < cnt01 + cnt12 + cnt20)
+            //fill common 20
+            while (i < cnt01 + cnt12 + cnt20 + 1)
             {
-                false_locations[camp][2].locations[false2_idx];
-                false_locations[camp][0].locations[false0_idx];
+                false_locations[camp][2].locations[false2_idx] = common[i];
+                false_locations[camp][0].locations[false0_idx] = common[i];
 
                 false2_idx++;
                 false0_idx++;
                 i++;
             }
 
+            //fill unique 0
+            while (i < cnt01 + cnt12 + cnt20 + cnt0 + 1)
+            {
+                false_locations[camp][0].locations[false0_idx] = common[i];
+
+                false0_idx++;
+                i++;
+            }
+
+            //fill unique 1
+            while (i < cnt01 + cnt12 + cnt20 + cnt0 + cnt1 + 1)
+            {
+                false_locations[camp][1].locations[false1_idx] = common[i];
+
+                false1_idx++;
+                i++;
+            }
+
+            //fill unique 2
+            while (i < cnt01 + cnt12 + cnt20 + cnt0 + cnt1 + cnt2 + 1)
+            {
+                false_locations[camp][2].locations[false2_idx] = common[i];
+
+                false2_idx++;
+                i++;
+            }
+
+            free(common);
         }
+    }
+
+    private: bool check_locations(coords_t locations[], uint8_t size)
+    {
+        for (uint8_t i = 0; i < size - 1; i++)
+        {
+            for (uint8_t j = i + 1; j < size; j++)
+            {
+                if (locations[i] == locations[j])
+                    return false;
+            }
+        }
+
+        return true;
     }
 };
 

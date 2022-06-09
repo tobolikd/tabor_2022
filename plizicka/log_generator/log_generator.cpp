@@ -21,6 +21,9 @@
 
 #define TEX_ADMIN_START "./sources/admin_start.tex"
 
+#define OUTPUT_FOLDER "./output/"
+#define OUTPUT_SUFFIX ".tex"
+
 bool write_from_file(std::ofstream &out, const char *filename);
 void write_logs(std::ofstream &out, std::list<log_t> &logs);
 void init_logs(std::list<log_t> &logs, int count);
@@ -55,13 +58,13 @@ int generate_all()
     team_names[3] = "delta";
     team_names[4] = "omega";
     team_names[5] = "omikron";
-    team_names[6] = "fí";
-    team_names[TEAM_COUNT - 1] = "pí";
+    team_names[6] = "sigma";
+    team_names[TEAM_COUNT - 1] = "kappa";
 
 
 
     doc_t stations[STATION_COUNT];
-    team_logs_t team_logs[CAMP_COUNT];
+    team_logs_t team_logs[TEAM_COUNT];
 
     for (uint8_t i = 0; i < STATION_COUNT; i++)
     {
@@ -97,7 +100,7 @@ int generate_all()
 int generate_admin(team_logs_t logs[], std::string teams[])
 {
     //output file
-    std::ofstream out("admin", std::ios::out);
+    std::ofstream out("./output/admin.tex", std::ios::out);
     if (!out.is_open())
     {
         std::cerr << "ERR: failed to open file (admin)\n";
@@ -172,7 +175,7 @@ int generate_admin(team_logs_t logs[], std::string teams[])
 int generate_team(team_logs_t &logs, const std::string team_name)
 {
     //output file
-    std::ofstream out(team_name, std::ios::out);
+    std::ofstream out(OUTPUT_FOLDER + team_name + OUTPUT_SUFFIX, std::ios::out);  
     if (!out.is_open())
     {
         std::cerr << "ERR: failed to open file (" << team_name << ")\n";
@@ -218,7 +221,7 @@ int generate_team(team_logs_t &logs, const std::string team_name)
 int generate_station(doc_t &document, const std::string filename)
 {
     //output file
-    std::ofstream out(filename, std::ios::out);
+    std::ofstream out(OUTPUT_FOLDER + filename + OUTPUT_SUFFIX, std::ios::out);
     if (!out.is_open())
     {
         std::cerr << "ERR: failed to open file (" << filename << ")\n";
