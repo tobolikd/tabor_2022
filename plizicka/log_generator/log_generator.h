@@ -432,8 +432,8 @@ struct team_logs_t
             logs[i].date.init_random();
             logs[i].time.init_random();
             logs[i].curve.init_random();
-            logs[i].locations.size = 1;
             logs[i].locations.locations[0] = camps.locations[i];
+            logs[i].locations.size = 1;
             logs[i].get_value();
         }
     }
@@ -468,21 +468,31 @@ struct team_logs_t
             tmp_log.date.day = logs[camp].date.day;
             tmp_log.time = logs[camp].time;
             tmp_log.curve = logs[camp].curve;
-            tmp_log.locations = logs[camp].locations;
             tmp_log.get_value();
 
             for (uint8_t false_location_num = 0; false_location_num < 3; false_location_num++)
             {
+                //set size (one correct + false size)
                 tmp_log.locations.size = false_locations[camp][false_location_num].size + 1;
+
+                //put correct to tmp_log
+                tmp_log.locations.locations[0] = logs[camp].locations.locations[0];
+
+                //put false ones to tmp_log
                 for (uint8_t j = 1; j < tmp_log.locations.size; j++)
                 {
                     tmp_log.locations.locations[j] = false_locations[camp][false_location_num].locations[j-1];
                 }
+
+                //shuffle them
                 tmp_log.locations.shuffle();
 
+                //get random index in current layer excluding used indexes
                 used_idxs[false_location_num] = get_random_station(station_min, min_station_cnt, used_idxs);
 
-                station_min[used_idxs[false_location_num]] = false;
+                //remove used index from current layer
+                if (min_station_cnt != STATION_COUNT + 1)   //if wasn't reset
+                    station_min[used_idxs[false_location_num]] = false;
                 min_station_cnt--;
 
                 stations[used_idxs[false_location_num]].log_list.push_back(tmp_log);
@@ -496,8 +506,8 @@ struct team_logs_t
 
         if (station_cnt == 1)
         {
-            //reset
-            station_cnt = STATION_COUNT;
+            //reset count (STATION_COUNT (new layer) + current index)
+            station_cnt = STATION_COUNT + 1;
             for (uint8_t i = 0; i < STATION_COUNT; i++)
             {
                 if (min[i])
