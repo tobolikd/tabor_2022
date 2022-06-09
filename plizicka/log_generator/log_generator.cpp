@@ -119,8 +119,11 @@ int generate_admin(team_logs_t logs[], std::string teams[])
     for (uint8_t team_num = 0; team_num < TEAM_COUNT; team_num++)
     {
         //begin table
-        out << "\t\t\\begin{tabularx}{\\textwidth}{c|c|l|s|s|s|s|s|S|}\n"
-            << "\t\t\t\\multicolumn{9}{c}{\\bfseries\\Large" << teams[team_num] << "} \\\\ [0.3em]\n"
+        out << "\t\t\\begin{table}[H]\n"
+            << "\t\t\\ttfamily\n"
+		    << "\t\t\\catcode`\\-=12\n"
+            << "\t\t\\begin{tabularx}{\\textwidth}{c|c|l|s|s|s|s|s|S|}\n"
+            << "\t\t\t\\multicolumn{9}{c}{\\bfseries\\Large " << teams[team_num] << "} \\\\ [0.3em]\n"
             << "\t\t\t\\textbf{Datum} & \\textbf{Čas} & \\textbf{Záznam signálu} & \\multicolumn{5}{l|}{\\bfseries Fake lokace} & \\textbf{\\large \\checkmark}\\\\ \\toprule[0.4mm]\n\n";
 
         //for each log (camp count)
@@ -128,7 +131,7 @@ int generate_admin(team_logs_t logs[], std::string teams[])
         {
             std::string line[3];
 
-            line[0] = "\\multirow[c]{3}{*}{YYYY/MM/DD} & \\multirow[c]{3}{*}{HH:MM:SS} & \\multirow[c]{3}{*}{" + logs[team_num].logs[camp_num].curve.to_latex() + "} & ";
+            line[0] = "\\multirow[c]{3}{*}{" + logs[team_num].logs[camp_num].date.to_string() + "} & \\multirow[c]{3}{*}{" + logs[team_num].logs[camp_num].time.to_string() + "} & \\multirow[c]{3}{*}{" + logs[team_num].logs[camp_num].curve.to_latex() + "} & ";
             line[1] = "&&&";
             line[2] = "&&&";
 
@@ -140,7 +143,7 @@ int generate_admin(team_logs_t logs[], std::string teams[])
                 //fill table with fake locations
                 while (tmp_loc_cnt < logs[team_num].false_locations[camp_num][line_num].size)
                 {
-                    line[line_num] += logs[team_num].false_locations[camp_num][line_num].locations[tmp_loc_cnt].to_string(); + " & ";
+                    line[line_num] += logs[team_num].false_locations[camp_num][line_num].locations[tmp_loc_cnt].to_string() + " & ";
                     tmp_loc_cnt++;
                 }
 
@@ -163,10 +166,13 @@ int generate_admin(team_logs_t logs[], std::string teams[])
                 << "\t\t\t" << line[2] << "\n";
         }
 
+        out << "\t\t\\end{tabularx}\n"
+            << "\t\t\\end{table}\n\n";
+
     }
 
     //end doc
-    out << "\t\\end{table}\n\\end{document}\n";
+    out << "\\end{document}\n";
 
     out.close();
     return 0;

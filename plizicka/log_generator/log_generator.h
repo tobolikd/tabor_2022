@@ -263,7 +263,7 @@ struct coords_t
     
     public: std::string to_string()
     {
-        return std::to_string(letter) + std::to_string(number);
+        return letter + std::to_string(number);
     }
 
     bool operator ==(const coords_t coords) const
