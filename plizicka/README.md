@@ -4,9 +4,3 @@
 
 ## log_generator.sh
 Generates log files (.tex) and runs latex to create pdfs
-
-usage:
-
-```./log_generator.sh [TEAM_COUNT CONTROL_POINTS_COUNT CAMP_COUNT]```
-        
-no args - generate example file
