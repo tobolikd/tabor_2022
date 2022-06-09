@@ -47,6 +47,6 @@ make || (print_exitcodes && exit 4)
 printf "\n}${GREEN}DONE${NO_COLOR}\n"
 
 # clean
-printf "\n${GREEN}Cleaning ${YELLOW}./output/${NO_COLOR}\n{\n\n"
+printf "\n${GREEN}Cleaning ${YELLOW}./output/${NO_COLOR}\n"
 make clean
 printf "${GREEN}DONE${NO_COLOR}\n"
