@@ -34,13 +34,16 @@ all:
 	done
 
 	@printf "${GREEN}\nExecuting ps2pdf${NO_COLOR} \n"
-	@for psfile in *.dvi; do \
+	@for psfile in *.ps; do \
 		echo $$psfile; \
-		@$(PS2PDF) $$psfile $(OUTPUT) && printf "${GREEN}DONE${NO_COLOR} \n"; \
+		$(PS2PDF) $$psfile $(OUTPUT) && printf "${GREEN}DONE${NO_COLOR} \n"; \
 	done
 
-clean:
-	@$(RM) $(RMFLAGS) !(*.tex|*.pdf|Makefile|sources|.gitignore|*.log)
+clean: autoremove
+	@$(RM) $(RMFLAGS) *.log
+
+autoremove:
+	@$(RM) $(RMFLAGS) !(*.tex|*.pdf|Makefile|sources|.gitignore)
 
 purge: clean
-	@$(RM) $(RMFLAGS) *.pdf *.log
+	@$(RM) $(RMFLAGS) *.pdf
