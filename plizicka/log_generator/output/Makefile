@@ -34,6 +34,7 @@ all:
 	done
 
 	@printf "${GREEN}\nExecuting ps2pdf${NO_COLOR} \n"
+
 	@for psfile in *.ps; do \
 		echo $$psfile; \
 		$(PS2PDF) $$psfile $(OUTPUT) && printf "${GREEN}DONE${NO_COLOR} \n"; \
