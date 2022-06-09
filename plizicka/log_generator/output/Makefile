@@ -10,18 +10,34 @@ PS2PDF = ps2pdf
 
 OUTPUT = 1>>log_generator.log 2>>log_generator_ERR.log
 
+# COLORS
+NO_COLOR=\033[0m
+GREEN=\033[0;32m
+
 all:
-	@printf "\033[0;32mExecuting LaTeX\033[0m \n"
-	@$(LATEX) *.tex $(OUTPUT) && printf "\033[0;32mDONE\033[0m \n"
+	@printf "${GREEN}Executing LaTeX${NO_COLOR} \n"
+	@for texfile in *.tex; do \
+		echo $$texfile; \
+		$(LATEX) $$texfile $(OUTPUT) && printf "${GREEN}DONE${NO_COLOR} \n"; \
+	done
 
-	@printf "\033[0;32m\nReruning LaTeX\033[0m \n"
-	@$(LATEX) *.tex $(OUTPUT) && printf "\033[0;32mDONE\033[0m \n"
+	@printf "${GREEN}\nReruning LaTeX${NO_COLOR} \n"
+	@for texfile in *.tex; do \
+		echo $$texfile; \
+		$(LATEX) $$texfile $(OUTPUT) && printf "${GREEN}DONE${NO_COLOR} \n"; \
+	done
 
-	@printf "\033[0;32m\nExecuting dvips\033[0m \n"
-	@$(DVIPS) *.dvi $(OUTPUT) && printf "\033[0;32mDONE\033[0m \n"
+	@printf "${GREEN}\nExecuting dvips${NO_COLOR} \n"
+	@for dvifile in *.dvi; do \
+		echo $$dvifile; \
+		$(DVIPS) $$dvifile $(OUTPUT) && printf "${GREEN}DONE${NO_COLOR} \n"; \
+	done
 
-	@printf "\033[0;32m\nExecuting ps2pdf\033[0m \n"
-	@$(PS2PDF) *.ps $(OUTPUT) && printf "\033[0;32mDONE\033[0m \n"
+	@printf "${GREEN}\nExecuting ps2pdf${NO_COLOR} \n"
+	@for psfile in *.dvi; do \
+		echo $$psfile; \
+		@$(PS2PDF) $$psfile $(OUTPUT) && printf "${GREEN}DONE${NO_COLOR} \n"; \
+	done
 
 clean:
 	@$(RM) $(RMFLAGS) !(*.tex|*.pdf|Makefile|sources|.gitignore|*.log)
