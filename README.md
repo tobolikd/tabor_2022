@@ -3,7 +3,7 @@
 # tabor_2022
 
 Různé soubory k táboru a hrám
- - posters - plakátek s prověrkami na hlavní nástěnku a letáčky s různými šiframi
+ - posters (TBD) - plakátek s prověrkami na hlavní nástěnku a letáčky s různými šiframi
  - spehovani - generátor logů, mapa, logo, ...
 
 Všechny soubory jsou dostupné pod [Creative Commons Attribution 4.0 International License][cc-by]
