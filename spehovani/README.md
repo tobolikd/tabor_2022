@@ -4,10 +4,10 @@
 
 ## log_generator
  - log_generator.sh - vygeneruje pdf soubory s logy ke hře
- - potřebné předpoklady
+ - potřebné programy a knihovny
    - LaTex s potřebnými knihovnami (např. TeXLive)
    - dvips a ps2pdf (součástí TeXLive)
-   - překladač g++ nebo jiný (nutno změnit v ./log_generator/Makefile )
+   - překladač g++ nebo jiný (nutno změnit v ./log_generator/Makefile)
  - výsledné soubory jsou v ./log_generator/output
  - Uspořádání do složek
 ```
