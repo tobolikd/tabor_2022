@@ -15,7 +15,7 @@
 #define MIN_YEAR 2022
 #define MAX_YEAR 2022
 #define MIN_MONTH 2
-#define MAX_MONTH 12
+#define MAX_MONTH 7
 #define MIN_DAY 1
 #define MAX_DAY_SHORT 30
 #define MAX_DAY_LONG 31
@@ -23,8 +23,8 @@
 #define MAX_DAY_LAP 29
 
 #define DOC_ID_LENGTH 10
-#define MIN_LOGS 50
-#define MAX_LOGS 70
+#define MIN_LOGS 40
+#define MAX_LOGS 60
 
 #define LOCATION_MIN_LETTER 'A'
 #define LOCATION_MAX_LETTER 'Z'
