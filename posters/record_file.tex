@@ -1,0 +1,129 @@
+%Author: David Tobolik
+
+%class
+\documentclass[a4paper, 11pt]{article}
+
+%packages
+\usepackage[czech]{babel}           %language
+\usepackage[a4paper, text={17cm,24cm}, left=2cm, top=2.5cm]{geometry}		%layout
+\usepackage{times}					%font
+\usepackage{multicol, multirow}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{xcolor,colortbl}
+\usepackage{array}
+\usepackage{etex}					% for dimexpr
+
+%encoding
+\usepackage[IL2]{fontenc}           %font encoding
+\usepackage[utf8]{inputenc}         %script encoding
+
+\usepackage{wasysym} %male and female symbol (\mars \venus)
+
+% textsize
+\newlength{\fontheight}
+\makeatletter
+\show\f@size
+\setlength{\fontheight}{\f@size pt}
+\makeatother
+\showthe\fontheight
+
+% custom lengths
+\def\bottomrulewidth{0.3mm}		% table bottom rule
+\def\tabtitleextraheight{5pt}	% table title extra space above and below
+\def\tablestretch{1.4}			% table rows stretch rate
+
+% white text on black bg
+\newcommand{\blackcell}{\cellcolor{black} \color{white} \ttfamily \bfseries}
+
+% table items
+	% short table (2 columns)
+	\newcommand{\ti}[2]{\ttfamily \MakeUppercase{#1}: & \ttfamily #2 \\ \midrule}
+	\newcommand{\lti}[2]{\ttfamily \MakeUppercase{#1}: & \ttfamily #2 \\ \bottomrule[\bottomrulewidth]}
+	
+	% long table (4 columns)
+	\newcommand{\TI}[4]{\ttfamily \MakeUppercase{#1}: & \ttfamily #2 & \ttfamily \MakeUppercase{#3}: & \ttfamily #4 \\ \midrule}
+	\newcommand{\LTI}[4]{\ttfamily \MakeUppercase{#1}: & \ttfamily #2 & \ttfamily \MakeUppercase{#3}: & \ttfamily #4 \\ \bottomrule[\bottomrulewidth]}
+
+% title on black with extra space above and bellow
+\newcommand{\tabtitle}[2]{\multicolumn{#1}{l}{\blackcell \MakeUppercase{#2}\rule{0pt}{\dimexpr \fontheight + 1pt + \tabtitleextraheight \relax} } \\ [\tabtitleextraheight]}
+
+% center X cell vertically - use in table enviroment
+%\renewcommand\tabularxcolumn[1]{m{#1}}
+
+\begin{document}
+	\pagenumbering{gobble}	% no page num
+	\noindent
+	% header table
+	\begin{table}[H]
+		\renewcommand\tabularxcolumn[1]{m{#1}}
+		\def\arraystretch{1.5}
+		\begin{tabularx}{\textwidth}{l X X X}
+			\multirow{4}{*}{ \includegraphics[scale=0.22]{sources/CIA_logo.pdf} } & \multicolumn{3}{c}{\bfseries \ttfamily \Huge KLASIFIKAČNÍ ZÁZNAM} \\
+			&&&\\
+			& \blackcell ID ZÁZNAMU: & \blackcell DATUM: & \blackcell OZNAČENÍ: \\
+			& \blackcell 48698413812 & \blackcell 10. 7. 2022 & \blackcell PŘÍSNĚ TAJNÉ \\
+			
+		\end{tabularx}
+	\end{table}
+	
+	\noindent
+	\begin{minipage}[t]{0.5\textwidth}
+		\begin{table}[H]
+			\renewcommand\tabularxcolumn[1]{m{#1}}
+			\def\arraystretch{\tablestretch}
+			\begin{tabularx}{\textwidth}{l X}
+				\tabtitle{2}{osobní údaje}
+				\ti{jméno}{Jitka}
+				\ti{krycí jméno}{}
+				\ti{pohlaví}{\Large \bfseries \female \male}
+				\ti{datum narození}{}
+				\lti{národnost}{}
+			\end{tabularx}
+		\end{table}
+		\begin{table}[H]
+			\renewcommand\tabularxcolumn[1]{m{#1}}
+			\def\arraystretch{\tablestretch}
+			\begin{tabularx}{\textwidth}{l X}
+				\tabtitle{2}{vzhled}
+				\ti{výška}{188 cm}
+				\ti{hmotnost}{}
+				\ti{oči}{}
+				\ti{vlasy}{}
+				\lti{jiné znaky}{}
+			\end{tabularx}
+		\end{table}
+	\end{minipage}
+	\begin{minipage}[t]{0.45\textwidth}
+		\begin{figure}[H]
+			\setlength{\fboxsep}{0pt}
+			%\vspace*{50pt}
+			\hspace*{0.08\textwidth}
+			\fbox{\includegraphics[width=\textwidth]{sources/female.png}}
+		\end{figure}
+	\end{minipage}
+
+	\vspace*{0.5cm}
+	\begin{table}[H]
+		\renewcommand\tabularxcolumn[1]{m{#1}}
+		\def\arraystretch{\tablestretch}
+		\begin{tabularx}{\textwidth}{l X l X}
+			\tabtitle{4}{doplňující informace}
+			\TI{vzdělání}{---}{manželka}{aaa}
+			\TI{organizace}{bbb}{děti}{ccc}
+			\LTI{důvod klasifikace}{ddd}{poznámky}{eee}
+		\end{tabularx}
+	\end{table}
+	
+	\begin{table}[H]
+		\renewcommand\tabularxcolumn[1]{m{#1}}
+		\def\arraystretch{\tablestretch}
+		\begin{tabularx}{\textwidth}{X}
+			\tabtitle{1}{kriminální historie}
+			\ttfamily Popis nějakých chujovin \\ \bottomrule[\bottomrulewidth]
+		\end{tabularx}
+	\end{table}
+	
+\end{document}
