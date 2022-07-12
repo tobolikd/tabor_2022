@@ -5,7 +5,7 @@
 
 %packages
 \usepackage[czech]{babel}           %language
-\usepackage[a4paper, text={17cm,24cm}, left=2cm, top=2.5cm]{geometry}		%layout
+\usepackage[a4paper, text={17cm,25cm}, left=2cm, top=2.5cm]{geometry}		%layout
 \usepackage{times}					%font
 \usepackage{multicol, multirow}
 \usepackage{graphicx}
@@ -50,6 +50,13 @@
 % title on black with extra space above and bellow
 \newcommand{\tabtitle}[2]{\multicolumn{#1}{l}{\blackcell \MakeUppercase{#2}\rule{0pt}{\dimexpr \fontheight + 1pt + \tabtitleextraheight \relax} } \\ [\tabtitleextraheight]}
 
+% male and female formatting
+\renewcommand{\male}{\Large \bfseries \mars}
+\renewcommand{\female}{\Large \bfseries \venus}
+
+% tilde char
+\newcommand{\texttilde}{$\sim$ }
+
 % center X cell vertically - use in table enviroment
 %\renewcommand\tabularxcolumn[1]{m{#1}}
 
@@ -76,11 +83,10 @@
 			\def\arraystretch{\tablestretch}
 			\begin{tabularx}{\textwidth}{l X}
 				\tabtitle{2}{osobní údaje}
-				\ti{jméno}{Jitka}
-				\ti{krycí jméno}{}
-				\ti{pohlaví}{\Large \bfseries \female \male}
-				\ti{datum narození}{}
-				\lti{národnost}{}
+				\ti{jméno}{Susan Hornet}
+				\lti{věk}{\texttilde 35 let}
+				\ti{krycí jméno}{Wasp}
+				\lti{pohlaví}{\female}
 			\end{tabularx}
 		\end{table}
 		\begin{table}[H]
@@ -88,18 +94,17 @@
 			\def\arraystretch{\tablestretch}
 			\begin{tabularx}{\textwidth}{l X}
 				\tabtitle{2}{vzhled}
-				\ti{výška}{188 cm}
-				\ti{hmotnost}{}
-				\ti{oči}{}
-				\ti{vlasy}{}
-				\lti{jiné znaky}{}
+				\ti{výška}{\texttilde 170 cm}
+				\ti{hmotnost}{\texttilde 50 kg}
+				\ti{oči}{zelené}
+				\ti{vlasy}{blond}
+				\lti{jiné znaky}{tetování na rameni}
 			\end{tabularx}
 		\end{table}
 	\end{minipage}
 	\begin{minipage}[t]{0.45\textwidth}
 		\begin{figure}[H]
 			\setlength{\fboxsep}{0pt}
-			%\vspace*{50pt}
 			\hspace*{0.08\textwidth}
 			\fbox{\includegraphics[width=\textwidth]{sources/female.png}}
 		\end{figure}
@@ -111,9 +116,9 @@
 		\def\arraystretch{\tablestretch}
 		\begin{tabularx}{\textwidth}{l X l X}
 			\tabtitle{4}{doplňující informace}
-			\TI{vzdělání}{---}{manželka}{aaa}
-			\TI{organizace}{bbb}{děti}{ccc}
-			\LTI{důvod klasifikace}{ddd}{poznámky}{eee}
+			\TI{vzdělání}{???}{manžel}{neznámý}
+			\TI{organizace}{VESPA}{děti}{2 dcery}
+			\LTI{důvod klasifikace}{klíčový člen VESPY}{poznámky}{tráví své oběti}
 		\end{tabularx}
 	\end{table}
 	
@@ -122,7 +127,9 @@
 		\def\arraystretch{\tablestretch}
 		\begin{tabularx}{\textwidth}{X}
 			\tabtitle{1}{kriminální historie}
-			\ttfamily Popis nějakých chujovin \\ \bottomrule[\bottomrulewidth]
+			\ttfamily Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vel mattis turpis, ac commodo orci. Vestibulum nisi velit, lobortis nec tellus et, tincidunt euismod purus. In et nunc venenatis, congue quam in, gravida mauris.
+			
+			Vivamus gravida pellentesque ipsum vitae volutpat. Fusce porttitor nec nibh at cursus. Aliquam tempus nisl sapien, vel dignissim eros porttitor at. Integer urna urna, pellentesque et purus ut, facilisis augue.  \\ \bottomrule[\bottomrulewidth]
 		\end{tabularx}
 	\end{table}
 	
