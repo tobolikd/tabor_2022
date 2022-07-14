@@ -1,0 +1,35 @@
+%Author: David Tobolik
+
+%class
+\documentclass[extrafontsizes, a4paper, 60pt]{memoir}
+
+%packages
+\usepackage[czech]{babel}           %language
+\usepackage[a4paper, text={170mm,277mm}, left=2cm, top=1cm]{geometry}		%layout
+
+%encoding
+\usepackage[IL2]{fontenc}           %font encoding
+\usepackage[utf8]{inputenc}         %script encoding
+
+\newcommand{\pg}[6]{
+\Huge
+\ttfamily
+\centering
+
+#1 \hfill #2
+
+\vspace{\stretch{0.25}}
+
+#3 \hfill #4
+
+\vspace{\stretch{0.25}}
+
+#5 \hfill #6
+
+\vspace{\stretch{0.5}}
+\newpage
+}
+
+\begin{document}
+	\input{codes.tex}
+\end{document}
