@@ -3,7 +3,9 @@
 # tabor_2022
 
 Různé soubory k táboru a hrám
- - posters - plakátek s prověrkami na hlavní nástěnku a letáčky s různými šiframi
+ - posters - loga, mapy, spisy, plakatky na nastenku apod
+ - proverky - šifry do prověrek, letáček do jídelny apod
+ - sestrelovani - generator čisel na osvobozování vědce
  - spehovani - generátor logů, mapa, logo, ...
 
 Všechny soubory jsou dostupné pod [Creative Commons Attribution 4.0 International License][cc-by]
