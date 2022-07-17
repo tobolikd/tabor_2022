@@ -45,11 +45,11 @@ int main()
 int generate_all()
 {
     camp_locations_t camps;
-    camps.locations[0].add_coords('A',0);
-    camps.locations[1].add_coords('B',1);
-    camps.locations[2].add_coords('C',2);
-    camps.locations[3].add_coords('D',3);
-    camps.locations[CAMP_COUNT - 1].add_coords('E',4);
+    camps.locations[0].add_coords('K',8);
+    camps.locations[1].add_coords('R',9);
+    camps.locations[2].add_coords('J',14);
+    camps.locations[3].add_coords('E',17);
+    camps.locations[CAMP_COUNT - 1].add_coords('Y',15);
 
     std::string team_names[TEAM_COUNT];
     team_names[0] = "Alfa";
