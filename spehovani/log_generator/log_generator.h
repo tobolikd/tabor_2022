@@ -24,7 +24,7 @@
 
 #define DOC_ID_LENGTH 10
 #define MIN_LOGS 40
-#define MAX_LOGS 60
+#define MAX_LOGS 55
 
 #define LOCATION_MIN_LETTER 'A'
 #define LOCATION_MAX_LETTER 'Z'
@@ -36,8 +36,8 @@
 #define MIN_COMMON_LOCS_CNT 1
 #define MAX_COMMON_LOCS_CNT 2
 
-#define TEAM_COUNT 8
-#define STATION_COUNT 8
+#define TEAM_COUNT 6
+#define STATION_COUNT 6
 #define CAMP_COUNT 5
 
 int get_rand(int min, int max);
