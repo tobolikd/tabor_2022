@@ -1,0 +1,104 @@
+%Author: David Tobolik
+
+%class
+\documentclass[a4paper, 12pt]{article}
+
+%packages
+\usepackage[czech]{babel}           %language
+\usepackage[a4paper, text={180mm,240mm}, left=10mm, top=15mm]{geometry}		%layout
+\usepackage{amsbsy}
+
+
+%encoding
+\usepackage[IL2]{fontenc}           %font encoding
+\usepackage[utf8]{inputenc}         %script encoding
+
+\newcommand{\Mdotlength}{2pt}
+\newcommand{\Mdahlength}{9pt}
+\newcommand{\Mcharseplength}{9pt}
+\newcommand{\Mwordseplength}{21pt}
+\newcommand{\Mdiditlength}{6pt}
+\newcommand{\Mfetvadd}{1.5pt}
+\newcommand{\Mcharsep}{\hspace{9pt}}
+\newcommand{\Mwordsep}{\hspace{21pt}}
+
+\newcommand{\dit}{\raisebox{0.5ex}{\boldmath{$\cdot$}\hspace{\Mdotlength}}}
+\newcommand{\dah}{\raisebox{0.5ex}{\boldmath{$-$}\hspace{\Mdotlength}}}
+
+\newcommand{\morse}[1]{\noindent\lstinline[breaklines, breakindent=0mm]|#1|}
+
+\usepackage{listings}
+\lstset{
+	literate=
+	{A}{\dit\dah		\Mcharsep}1
+	{B}{\dah\dit\dit\dit		\Mcharsep}1
+	{C}{\dah\dit\dah\dit		\Mcharsep}1
+	{D}{\dah\dit\dit		\Mcharsep}1
+	{E}{\dit		\Mcharsep}1
+	{F}{\dit\dit\dah\dit		\Mcharsep}1
+	{G}{\dah\dah\dit 		\Mcharsep}1
+	{H}{\dit\dit\dit\dit		\Mcharsep}1
+	{I}{\dit\dit		\Mcharsep}1
+	{J}{\dit\dah\dah\dah		\Mcharsep}1
+	{K}{\dah\dit\dah		\Mcharsep}1
+	{L}{\dit\dah\dit\dit		\Mcharsep}1
+	{M}{\dah\dah		\Mcharsep}1
+	{N}{\dah\dit		\Mcharsep}1
+	{O}{\dah\dah\dah		\Mcharsep}1
+	{P}{\dit\dah\dah\dit		\Mcharsep}1
+	{Q}{\dah\dah\dit\dah		\Mcharsep}1
+	{R}{\dit\dah\dit		\Mcharsep}1
+	{S}{\dit\dit\dit		\Mcharsep}1
+	{T}{\dah		\Mcharsep}1
+	{U}{\dit\dit\dah		\Mcharsep}1
+	{V}{\dit\dit\dit\dah		\Mcharsep}1
+	{W}{\dit\dah\dah		\Mcharsep}1
+	{X}{\dah\dit\dit\dah		\Mcharsep}1
+	{Y}{\dah\dit\dah\dah		\Mcharsep}1
+	{Z}{\dah\dah\dit\dit		\Mcharsep}1
+	{a}{\dit\dah		\Mcharsep}1
+	{b}{\dah\dit\dit\dit		\Mcharsep}1
+	{c}{\dah\dit\dah\dit		\Mcharsep}1
+	{d}{\dah\dit\dit		\Mcharsep}1
+	{e}{\dit		\Mcharsep}1
+	{f}{\dit\dit\dah\dit		\Mcharsep}1
+	{g}{\dah\dah\dit 		\Mcharsep}1
+	{h}{\dit\dit\dit\dit		\Mcharsep}1
+	{i}{\dit\dit		\Mcharsep}1
+	{j}{\dit\dah\dah\dah		\Mcharsep}1
+	{k}{\dah\dit\dah		\Mcharsep}1
+	{l}{\dit\dah\dit\dit		\Mcharsep}1
+	{m}{\dah\dah		\Mcharsep}1
+	{n}{\dah\dit		\Mcharsep}1
+	{o}{\dah\dah\dah		\Mcharsep}1
+	{p}{\dit\dah\dah\dit		\Mcharsep}1
+	{q}{\dah\dah\dit\dah		\Mcharsep}1
+	{r}{\dit\dah\dit		\Mcharsep}1
+	{s}{\dit\dit\dit		\Mcharsep}1
+	{t}{\dah		\Mcharsep}1
+	{u}{\dit\dit\dah		\Mcharsep}1
+	{v}{\dit\dit\dit\dah		\Mcharsep}1
+	{w}{\dit\dah\dah		\Mcharsep}1
+	{x}{\dah\dit\dit\dah		\Mcharsep}1
+	{y}{\dah\dit\dah\dah		\Mcharsep}1
+	{z}{\dah\dah\dit\dit		\Mcharsep}1
+	{0}{\dah\dah\dah\dah\dah		\Mcharsep}1
+	{1}{\dit\dah\dah\dah\dah		\Mcharsep}1
+	{2}{\dit\dit\dah\dah\dah		\Mcharsep}1
+	{3}{\dit\dit\dit\dah\dah		\Mcharsep}1
+	{4}{\dit\dit\dit\dit\dah		\Mcharsep}1
+	{5}{\dit\dit\dit\dit\dit		\Mcharsep}1
+	{6}{\dah\dit\dit\dit\dit		\Mcharsep}1
+	{7}{\dah\dah\dit\dit\dit		\Mcharsep}1
+	{8}{\dah\dah\dah\dit\dit		\Mcharsep}1
+	{9}{\dah\dah\dah\dah\dit		\Mcharsep}1
+	{.}{/}1
+	{\ }{/\Mcharsep}1
+	{,}{\Mwordsep}1
+}
+
+\begin{document}
+\pagenumbering{gobble} %turn off page numbering
+	
+	\morse{Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable}
+\end{document}
