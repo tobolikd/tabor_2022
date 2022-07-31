@@ -57,9 +57,8 @@ int generate_all()
     team_names[2] = "Gama";
     team_names[3] = "Delta";
     team_names[4] = "Epsilon";
-    team_names[5] = "Lambda";
-    team_names[6] = "Omikron";
-    team_names[TEAM_COUNT - 1] = "Sigma";
+    team_names[5] = "Omega";
+    team_names[TEAM_COUNT - 1] = "Omikron";
 
 
 

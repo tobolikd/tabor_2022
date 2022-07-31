@@ -36,7 +36,7 @@
 #define MIN_COMMON_LOCS_CNT 1
 #define MAX_COMMON_LOCS_CNT 2
 
-#define TEAM_COUNT 6
+#define TEAM_COUNT 7
 #define STATION_COUNT 6
 #define CAMP_COUNT 5
 
