@@ -15,9 +15,7 @@
 \usepackage{xcolor,colortbl}
 \usepackage{array}
 \usepackage{etex}					% for dimexpr
-\usepackage[symbol]{footmisc}		% footnote asterisk
 \usepackage{wasysym}				% male and female symbol (\mars \venus)
-\usepackage{tablefootnote}
 
 
 %encoding
@@ -59,13 +57,12 @@
 % tilde char
 \newcommand{\texttilde}{$\sim$ }
 
-% footnote asterisk
-%\renewcommand{\thefootnote}{\fnsymbol{footnote}}
-
 % center X cell vertically - use in table enviroment
 %\renewcommand\tabularxcolumn[1]{m{#1}}
 
-\begin{document}
+\newcommand{\ind}{\hspace*{8mm}}
+
+\begin{document}	
 	\pagenumbering{gobble}	% no page num
 	\noindent
 	% header table
@@ -82,21 +79,21 @@
 	\end{table}
 	
 	\noindent
-	\begin{minipage}[t]{0.60\textwidth}
+	\begin{minipage}[t]{0.62\textwidth}
 		\begin{table}[H]
 			\renewcommand\tabularxcolumn[1]{m{#1}}
 			\def\arraystretch{\tablestretch}
 			\begin{tabularx}{\textwidth}{l X}
 				\tabtitle{2}{základní informace}
 				\ti{velitel operace}{Daniel Crocs}
-				\ti{předmět vyšetřování}{střežený objekt}
+				\ti{předmět vyšetřování}{střežený objekt tvaru krychle, černé barvy}
 				\ti{původ}{neznámý}
 				\ti{priorita}{vysoká}
-				\lti{}{}
+				\lti{kód operace}{19H9URMLG7}
 			\end{tabularx}
 		\end{table}
 	\end{minipage}
-	\begin{minipage}[t]{0.35\textwidth}
+	\begin{minipage}[t]{0.33\textwidth}
 		\begin{figure}[H]
 			\setlength{\fboxsep}{0pt}
 			\hspace*{0.1\textwidth}
@@ -104,14 +101,26 @@
 		\end{figure}
 	\end{minipage}
 
-	\vspace*{0.5cm}	
+	\vspace*{0.5cm}
 	\begin{table}[H]
 		\renewcommand\tabularxcolumn[1]{m{#1}}
 		\def\arraystretch{\tablestretch}
-		\setcounter
 		\begin{tabularx}{\textwidth}{X}
 			\tabtitle{1}{průběh operace}
-		\ttfamily Dne 4. 8. 2022 obdrželo hlavní velitelství CIA hlášení o neidentifikovatelném objektu. Na místo byly vyslány sondy na průzkum oblasti, které zaznamenaly vysokou intenzitu elektromagnetického záření. Radiace v oblasti (1257 mSv) přesahuje normu přibližné čtyřnásobně \tablefootnote[1]{Běžná hodnota radiace se pohybuje od 100 mSv do 300 mSv}. nuf\\ \bottomrule[\bottomrulewidth]
+		\ttfamily
+		\ind Dne 4. 8. 2022 obdrželo hlavní velitelství CIA hlášení o~neidentifikovatelném objektu. Na místo byly vyslány sondy na průzkum oblasti, které zaznamenaly vysokou intenzitu elektromagnetického záření. Radiace v oblasti (1257 mSv) přesahuje normu přibližné čtyřnásobně$^*$. V bezprostřední blízkosti objektu, kam nebylo možné sondy vyslat kvůli elektromagnetickému rušení, je odhadovaná radiace nesrovnatelně vyšší.
+		
+		\ind Na místo byla vyslána speciální průzkumná jednotka, která ihned při vstupu do objektu zmizela z radaru a zanikl radiokomunikační přenos. Ihned byly na místo vyslány záchranné sondy a dron, které však neuspěly.
+		
+		\ind Po tomto incidentu byla operaci přidělená vysoká priorita, na místě se vybudovala dočasná základna a byla spuštěna operace Ghost Vertex, která monitoruje aktivitu objektu a jeho okolí.
+		
+		\ind Při konfrontaci s místními byly pořízeny záznamy výpovědí za použití polygrafu, který prokázal jejich pravdomluvnost. Od doby, kdy se objekt objevil, byly v okolní oblasti popsány paranormální jevy a začali se zde vyskytovat podivní lidé. Nebyl však prokázán žádný přímý vliv objektu na tyto události.
+		
+		\ind Účelem operace Hexahedron je zjištění původu objektu a objasnění jeho funkčnosti a následné rozhodnutí, jak bude s objektem naloženo. Bude buď využit pro účely CIA nebo podlehne destrukci v případě, že by představoval větší hrozbu.
+		
+		\ind Velký důraz je také kladen na organizaci záchranné mise jednotek, které byly dříve vyslány do objektu.\\ \bottomrule[\bottomrulewidth]
+		\rule{7cm}{0.1mm} \\[-1.5ex]
+		\footnotesize $^*$ Běžná hodnota radiace se pohybuje od 100 mSv do 300 mSv \\
 		\end{tabularx}
 	\end{table}
 	
