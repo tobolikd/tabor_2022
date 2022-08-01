@@ -5,3 +5,5 @@
 !.gitignore
 !sources/
 !Makefile
+!pdf/
+!tex/
