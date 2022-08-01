@@ -14,13 +14,16 @@
 
 #define MIN_YEAR 2022
 #define MAX_YEAR 2022
-#define MIN_MONTH 2
-#define MAX_MONTH 7
+#define MIN_MONTH 8
+#define MAX_MONTH 8
 #define MIN_DAY 1
 #define MAX_DAY_SHORT 30
 #define MAX_DAY_LONG 31
 #define MAX_DAY_NON_LAP 28
 #define MAX_DAY_LAP 29
+
+#define MIN_DATE_DAY 4
+#define MAX_DATE_DAY 18
 
 #define DOC_ID_LENGTH 10
 #define MIN_LOGS 40
@@ -113,6 +116,9 @@ struct date_t
     {
         year = get_rand(MIN_YEAR, MAX_YEAR);
         month = get_rand(MIN_MONTH, MAX_MONTH);
+        #ifdef MIN_DATE_DAY
+        day = get_rand(MIN_DATE_DAY, MAX_DATE_DAY);
+        #else
         switch (month_length[month - 1])
         {
         case SHORT:
@@ -136,6 +142,7 @@ struct date_t
             throw std::exception();
             break;
         }
+        #endif
     }
 
     private: bool is_lap()
