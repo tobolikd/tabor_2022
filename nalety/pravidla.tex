@@ -1,0 +1,78 @@
+%Author: David Tobolik
+
+%class
+\documentclass[a4paper, 11pt]{article}
+
+%packages
+\usepackage[czech]{babel}           %language
+\usepackage[a4paper, text={17cm,27cm}, left=2cm, top=2.2cm]{geometry}		%layout
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{multicol, multirow}
+\usepackage{float}
+
+\fontfamily{ttfamily}
+
+%encoding
+\usepackage[IL2]{fontenc}           %font encoding
+\usepackage[utf8]{inputenc}         %script encoding
+
+\newcommand{\bat}{\includegraphics[height=8pt]{battery.png}}
+\usepackage{array}
+\newcolumntype{Z}{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}X}
+
+
+\newcommand{\page}[1]{
+\ttfamily
+
+{\Huge \hspace*{\stretch{0.5}} #1 \hspace*{\stretch{0.5}}}
+
+\begin{itemize}
+	\item VESPA má 3 tábory s našimi věcmi - na pevnině, na ostrovech v jezeře a za roklí
+	\item musíme tyto věci získat zpět do našich základen
+	\item na ostrovy se dostaneme pomocí voru a přes rokli po mostě
+	\item vor a most stavíme z věcí, které najdeme v oblasti
+	
+	\bigskip
+	
+	\item po vyhlášení náletů se všechny jednotky musí do 1 minuty stáhnout do podzemního krytu a využít 1 energii/osoba na napájení obranných systémů
+	\item kdo se nestihne vrátit nebo nemá energii na napájení obrany, musí se uzdravit v jádru krytu
+	\item po dobu náletů musí být všichni agenti v krytu
+	
+	\bigskip
+	
+	\item suroviny nosí agenti po jedné nebo podle jiných instrukcí, avšak nelze nést 2 suroviny najednou
+	\item v případě dopadení VESPOU upustí agent nesený předmět a vrátí se do základny, po 20ti sekundách v základně je opět nasazen do boje
+	
+	\bigskip
+	
+	\item každá jednotka používá pouze svůj vor a most
+	\item na voru jedou (drží se za ruce) vždy minimálně 2 agenti, pokud je počet živých na palubě menší než 2 musí se celý vor vrátit do přístavu
+	
+\end{itemize}
+
+\begin{table}[H]
+	\centering
+	\ttfamily
+	\def\arraystretch{1.6}
+	\begin{tabularx}{0.8\textwidth}{XZXZX}
+		\multicolumn{5}{c}{\bfseries \Large Systém surovin} \\
+		%\bfseries Surovina  & + & Energie & $\rightarrow$ & Produkt\\ \hline
+		strom & + & 3 \bat & $\rightarrow$ & 10 dřeva \\ \hline
+		strom & + & 1 \bat & $\rightarrow$ & 3 klády \\ \hline
+		kláda & + & 2 \bat & $\rightarrow$ & 3 dřeva \\ \hline
+		hrouda rudy & + & 3 \bat & $\rightarrow$ & 5 železa \\ \hline
+		ruda & + & 1 \bat & $\rightarrow$ & 1 železo \\
+	\end{tabularx}
+\end{table}
+\pagebreak
+}
+\begin{document}
+	\page{Alfa}
+	\page{Beta}
+	\page{Gama}
+	\page{Delta}
+	\page{Omikron}
+	\page{Omega}
+	\page{Epsilon}
+\end{document}

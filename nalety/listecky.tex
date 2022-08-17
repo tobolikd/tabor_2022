@@ -1,0 +1,66 @@
+%Author: David Tobolik
+
+%class
+\documentclass[a4paper, 11pt]{article}
+
+%packages
+\usepackage[czech]{babel}           %language
+\usepackage[a4paper, left=0.5cm, top=1cm, right=0.5cm, bottom=1cm]{geometry}		%layout
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{multicol, multirow}
+\usepackage{float}
+\usepackage{makecell}
+
+\fontfamily{ttfamily}
+
+%encoding
+\usepackage[IL2]{fontenc}           %font encoding
+\usepackage[utf8]{inputenc}         %script encoding
+
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+
+\newcommand{\listek}[1]{
+\begin{table}[H]
+	\ttfamily
+	\large
+	\def\arraystretch{3.4}
+	\begin{tabularx}{\textwidth}{Y|Y|Y}
+		#1 & #1 & #1 \\ \hline
+		#1 & #1 & #1 \\ \hline
+		#1 & #1 & #1 \\ \hline
+		#1 & #1 & #1 \\ \hline
+		#1 & #1 & #1 \\ \hline
+		#1 & #1 & #1 \\ \hline
+		#1 & #1 & #1 \\ \hline
+		#1 & #1 & #1 \\ \hline
+		#1 & #1 & #1 \\ \hline
+		#1 & #1 & #1 \\ \hline
+		#1 & #1 & #1 \\ \hline
+		#1 & #1 & #1 \\ \hline
+		#1 & #1 & #1 \\ \hline
+		#1 & #1 & #1 \\ \hline
+		#1 & #1 & #1 \\ \hline
+		#1 & #1 & #1 \\
+	\end{tabularx}
+\end{table}
+}
+
+\begin{document}
+	\pagenumbering{gobble}
+	\listek{\makecell{STROM \\ nesou 4 lidé za ruce}}
+	\listek{\makecell{KLÁDA \\ nesou 2 lidé za ruce}}
+	\listek{DŘEVO}
+	\listek{DŘEVO}
+	\listek{DŘEVO}
+	\listek{ŽELEZNÁ RUDA}
+	\listek{\makecell{HROUDA ŽELEZNÉ RUDY \\ nesou 3 lidé za ruce}}
+	\listek{JUTA}
+	\listek{JUTA}
+	\listek{ŽELEZO}
+	\listek{ŽELEZO}
+	\listek{PROVAZ}
+	\listek{HŘEBÍKY}
+	
+
+\end{document}
