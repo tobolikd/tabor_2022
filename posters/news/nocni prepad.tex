@@ -1,0 +1,90 @@
+%Author: David Tobolik
+
+%class
+\documentclass[a4paper, 11pt]{article}
+
+%packages
+\usepackage[czech]{babel}           %language
+\usepackage[a4paper, text={17cm,25cm}, left=2cm, top=2.5cm]{geometry}		%layout
+\usepackage{times}					%font
+\usepackage{multicol, multirow}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{xcolor,colortbl}
+\usepackage{array}
+\usepackage{etex}					% for dimexpr
+
+%encoding
+\usepackage[IL2]{fontenc}           %font encoding
+\usepackage[utf8]{inputenc}         %script encoding
+
+\usepackage{wasysym} %male and female symbol (\mars \venus)
+
+% textsize
+\newlength{\fontheight}
+\makeatletter
+\show\f@size
+\setlength{\fontheight}{\f@size pt}
+\makeatother
+\showthe\fontheight
+
+% custom lengths
+\def\bottomrulewidth{0.3mm}		% table bottom rule
+\def\tabtitleextraheight{5pt}	% table title extra space above and below
+\def\tablestretch{1.4}			% table rows stretch rate
+
+% white text on black bg
+\newcommand{\blackcell}{\cellcolor{black} \color{white} \ttfamily \bfseries}
+
+% table items
+% short table (2 columns)
+\newcommand{\ti}[2]{\ttfamily \MakeUppercase{#1}: & \ttfamily #2 \\ \midrule}
+\newcommand{\lti}[2]{\ttfamily \MakeUppercase{#1}: & \ttfamily #2 \\ \bottomrule[\bottomrulewidth]}
+
+% long table (4 columns)
+\newcommand{\TI}[4]{\ttfamily \MakeUppercase{#1}: & \ttfamily #2 & \ttfamily \MakeUppercase{#3}: & \ttfamily #4 \\ \midrule}
+\newcommand{\LTI}[4]{\ttfamily \MakeUppercase{#1}: & \ttfamily #2 & \ttfamily \MakeUppercase{#3}: & \ttfamily #4 \\ \bottomrule[\bottomrulewidth]}
+
+% title on black with extra space above and bellow
+\newcommand{\tabtitle}[2]{\multicolumn{#1}{l}{\blackcell \MakeUppercase{#2}\rule{0pt}{\dimexpr \fontheight + 1pt + \tabtitleextraheight \relax} } \\ [\tabtitleextraheight]}
+
+% male and female formatting
+\renewcommand{\male}{\Large \bfseries \mars}
+\renewcommand{\female}{\Large \bfseries \venus}
+
+% tilde char
+\newcommand{\texttilde}{$\sim$ }
+
+% center X cell vertically - use in table enviroment
+%\renewcommand\tabularxcolumn[1]{m{#1}}
+
+\newcommand{\ind}{\hspace*{8mm}}
+
+\begin{document}
+	\pagenumbering{gobble}	% no page num
+	\noindent
+	% header table
+	\begin{table}[H]
+		\renewcommand\tabularxcolumn[1]{m{#1}}
+		\def\arraystretch{1.5}
+		\begin{tabularx}{\textwidth}{l X X X}
+			\multirow{4}{*}{ \includegraphics[scale=0.22]{sources/CIA_logo.pdf} } & \multicolumn{3}{c}{\bfseries \ttfamily \huge PROTOKOL O MIMOŘÁDNÉ UDÁLOSTI} \\
+			&&&\\
+			& \blackcell ID ZÁZNAMU: & \blackcell DATUM: & \blackcell OZNAČENÍ: \\
+			& \blackcell 7284559375 & \blackcell 18. 8. 2022 & \blackcell DŮVĚRNÉ \\
+		\end{tabularx}
+	\end{table}
+
+	\ttfamily
+
+	V noci ze 17. 8. na 18. 8. spatřila noční hlídka několik postav, které se pohybovaly v prostorách základny.
+	\newline
+	
+	\noindent
+	Výpověď jednoho ze svědků:
+	
+	\uv{Takže jsme vylezli ze stanu a někdo tam pořád běhal, hlídka spustila poplach\dots Pak jsme šli s mojí kamarádkou na záchod a tam mě někdo chytil za nohu a snažil se mě odtáhnou na záchod, ale já jsem ho potom praštila. Potom odtáhl tu moji kamarádku do lesa, ale potom se nám oboum podařilo uniknout.}
+		
+\end{document}

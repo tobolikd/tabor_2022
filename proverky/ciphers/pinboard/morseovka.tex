@@ -1,11 +1,11 @@
 %Author: David Tobolik
 
 %class
-\documentclass[a4paper, 12pt]{article}
+\documentclass[a4paper, 10pt]{article}
 
 %packages
 \usepackage[czech]{babel}           %language
-\usepackage[a4paper, text={180mm,240mm}, left=10mm, top=15mm]{geometry}		%layout
+\usepackage[a4paper, left=10mm, right=10mm, top=15mm, bottom=15mm]{geometry}		%layout
 \usepackage{amsbsy}
 
 
@@ -57,31 +57,43 @@
 	{Y}{\dah\dit\dah\dah		\Mcharsep}1
 	{Z}{\dah\dah\dit\dit		\Mcharsep}1
 	{a}{\dit\dah		\Mcharsep}1
+	{á}{\dit\dah		\Mcharsep}1
 	{b}{\dah\dit\dit\dit		\Mcharsep}1
 	{c}{\dah\dit\dah\dit		\Mcharsep}1
+	{č}{\dah\dit\dah\dit		\Mcharsep}1
 	{d}{\dah\dit\dit		\Mcharsep}1
 	{e}{\dit		\Mcharsep}1
+	{é}{\dit		\Mcharsep}1
+	{ě}{\dit		\Mcharsep}1
 	{f}{\dit\dit\dah\dit		\Mcharsep}1
 	{g}{\dah\dah\dit 		\Mcharsep}1
 	{h}{\dit\dit\dit\dit		\Mcharsep}1
 	{i}{\dit\dit		\Mcharsep}1
+	{í}{\dit\dit		\Mcharsep}1
 	{j}{\dit\dah\dah\dah		\Mcharsep}1
 	{k}{\dah\dit\dah		\Mcharsep}1
 	{l}{\dit\dah\dit\dit		\Mcharsep}1
 	{m}{\dah\dah		\Mcharsep}1
 	{n}{\dah\dit		\Mcharsep}1
 	{o}{\dah\dah\dah		\Mcharsep}1
+	{ó}{\dah\dah\dah		\Mcharsep}1
 	{p}{\dit\dah\dah\dit		\Mcharsep}1
 	{q}{\dah\dah\dit\dah		\Mcharsep}1
 	{r}{\dit\dah\dit		\Mcharsep}1
+	{ř}{\dit\dah\dit		\Mcharsep}1
 	{s}{\dit\dit\dit		\Mcharsep}1
+	{š}{\dit\dit\dit		\Mcharsep}1
 	{t}{\dah		\Mcharsep}1
 	{u}{\dit\dit\dah		\Mcharsep}1
+	{ú}{\dit\dit\dah		\Mcharsep}1
+	{ů}{\dit\dit\dah		\Mcharsep}1
 	{v}{\dit\dit\dit\dah		\Mcharsep}1
 	{w}{\dit\dah\dah		\Mcharsep}1
 	{x}{\dah\dit\dit\dah		\Mcharsep}1
 	{y}{\dah\dit\dah\dah		\Mcharsep}1
+	{ý}{\dah\dit\dah\dah		\Mcharsep}1
 	{z}{\dah\dah\dit\dit		\Mcharsep}1
+	{ž}{\dah\dah\dit\dit		\Mcharsep}1
 	{0}{\dah\dah\dah\dah\dah		\Mcharsep}1
 	{1}{\dit\dah\dah\dah\dah		\Mcharsep}1
 	{2}{\dit\dit\dah\dah\dah		\Mcharsep}1
@@ -97,8 +109,49 @@
 	{,}{\Mwordsep}1
 }
 
+\newcommand{\mo}[1]{\noindent \Large #1 morseovka - starší}
+
 \begin{document}
 \pagenumbering{gobble} %turn off page numbering
+	\mo{1}
 	
-	\morse{Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable.}
+	\morse{při konfrontaci s místními byly pořízeny záznamy vypovědí za použití polygrafu který prokázal jejich pravdomluvnost}
+	
+	\mo{2}
+	
+	\morse{od doby, kdy se objekt objevil byly v okolní oblasti popsány paranormální jevy a začaly se zde vyskytovat zvláštní blíže neurčené osoby}
+	
+	\mo{3}
+	
+	\morse{myšlenkový vývoj Pierra cato byl zpětně vyhodnocen jako postupná radikalizace tolerovaná pro oblíbenost v útvaru}
+	
+	\mo{4}
+	
+	\morse{Pierre Cato absolvoval zmíněné vzdělání s vyznamenáním a chválou nadřízených a pod záštitou místní policie vedl úspěšné mise proti pašerákům v rodně Guyaně}
+	
+	\pagebreak
+	\mo{5}
+	
+	\morse{ucelem operace Hexahedron je zjištění původu objektu objasnění jeho funkčnosti a následné rozhodnutí jak bude s objektem naloženo}
+	
+	\mo{6}
+	
+	\morse{Burja podstoupila nebezpečnou experimentální léčbu, aby se vyhnula důsledkům zranění po výbuchu v Gruzii. Dodnes je závislá na medikaci}
+	
+	\mo{7}
+	
+	\morse{Vespa používá pokročilé kryptografické techniky a umělou inteligenci k prolomení šifrované radiové komunikace CIA}
+	
+	\mo{8}
+	
+	\morse{integrální růst hladiny beta vyzařované objektem se zpomalil o padesát procent během prvních pěti dnů důsledného sledování}
+	
+	\pagebreak
+	\mo{9}
+	
+	\morse{agent Daniel Crocs byl povolán jako koordinátor pěti divizí a týmu odborníků, kteří se podílejí na speciální operaci Hexahedron}
+	
+	\mo{10}
+	
+	\morse{stříbrný objekt tvaru krychle se skládá z dosud nepopsané slitiny vzácných prvků např zirkonium které jsou uspořádány ve speciální krystalické struktuře}
 \end{document}

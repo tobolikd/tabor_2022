@@ -1,0 +1,139 @@
+%Author: David Tobolik
+
+%class
+\documentclass[a4paper, 11pt]{article}
+
+%packages
+\usepackage[czech]{babel}           %language
+\usepackage[a4paper, text={17cm,25cm}, left=2cm, top=2.5cm]{geometry}		%layout
+\usepackage{times}					%font
+\usepackage{multicol, multirow}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{xcolor,colortbl}
+\usepackage{array}
+\usepackage{etex}					% for dimexpr
+
+%encoding
+\usepackage[IL2]{fontenc}           %font encoding
+\usepackage[utf8]{inputenc}         %script encoding
+
+\usepackage{wasysym} %male and female symbol (\mars \venus)
+
+% textsize
+\newlength{\fontheight}
+\makeatletter
+\show\f@size
+\setlength{\fontheight}{\f@size pt}
+\makeatother
+\showthe\fontheight
+
+% custom lengths
+\def\bottomrulewidth{0.3mm}		% table bottom rule
+\def\tabtitleextraheight{5pt}	% table title extra space above and below
+\def\tablestretch{1.4}			% table rows stretch rate
+
+% white text on black bg
+\newcommand{\blackcell}{\cellcolor{black} \color{white} \ttfamily \bfseries}
+
+% table items
+	% short table (2 columns)
+	\newcommand{\ti}[2]{\ttfamily \MakeUppercase{#1}: & \ttfamily #2 \\ \midrule}
+	\newcommand{\lti}[2]{\ttfamily \MakeUppercase{#1}: & \ttfamily #2 \\ \bottomrule[\bottomrulewidth]}
+	
+	% long table (4 columns)
+	\newcommand{\TI}[4]{\ttfamily \MakeUppercase{#1}: & \ttfamily #2 & \ttfamily \MakeUppercase{#3}: & \ttfamily #4 \\ \midrule}
+	\newcommand{\LTI}[4]{\ttfamily \MakeUppercase{#1}: & \ttfamily #2 & \ttfamily \MakeUppercase{#3}: & \ttfamily #4 \\ \bottomrule[\bottomrulewidth]}
+
+% title on black with extra space above and bellow
+\newcommand{\tabtitle}[2]{\multicolumn{#1}{l}{\blackcell \MakeUppercase{#2}\rule{0pt}{\dimexpr \fontheight + 1pt + \tabtitleextraheight \relax} } \\ [\tabtitleextraheight]}
+
+% male and female formatting
+\renewcommand{\male}{\Large \bfseries \mars}
+\renewcommand{\female}{\Large \bfseries \venus}
+
+% tilde char
+\newcommand{\texttilde}{$\sim$ }
+
+% center X cell vertically - use in table enviroment
+%\renewcommand\tabularxcolumn[1]{m{#1}}
+
+\newcommand{\ind}{\hspace*{8mm}}
+
+\begin{document}
+	\pagenumbering{gobble}	% no page num
+	\noindent
+	% header table
+	\begin{table}[H]
+		\renewcommand\tabularxcolumn[1]{m{#1}}
+		\def\arraystretch{1.5}
+		\begin{tabularx}{\textwidth}{l X X X}
+			\multirow{4}{*}{ \includegraphics[scale=0.22]{sources/CIA_logo.pdf} } & \multicolumn{3}{c}{\bfseries \ttfamily \Huge KLASIFIKAČNÍ ZÁZNAM} \\
+			&&&\\
+			& \blackcell ID ZÁZNAMU: & \blackcell DATUM: & \blackcell OZNAČENÍ: \\
+			& \blackcell 4362710039 & \blackcell 11. 3. 2019 & \blackcell PŘÍSNĚ TAJNÉ \\
+			
+		\end{tabularx}
+	\end{table}
+
+	\noindent
+	\begin{minipage}[t]{0.5\textwidth}
+		\begin{table}[H]
+			\renewcommand\tabularxcolumn[1]{m{#1}}
+			\def\arraystretch{\tablestretch}
+			\begin{tabularx}{\textwidth}{l X}
+				\tabtitle{2}{osobní údaje}
+				\ti{jméno}{Daniel Crocs}
+				\ti{narození}{29. 1. 1999}
+				\lti{pohlaví}{\male}
+			\end{tabularx}
+		\end{table}
+		\begin{table}[H]
+			\renewcommand\tabularxcolumn[1]{m{#1}}
+			\def\arraystretch{\tablestretch}
+			\begin{tabularx}{\textwidth}{l X}
+				\tabtitle{2}{vzhled}
+				\ti{výška}{182 cm}
+				\ti{hmotnost}{90 kg}
+				\ti{oči}{tmavé}
+				\lti{vlasy}{tmavě hnědé}
+			\end{tabularx}
+		\end{table}
+	\end{minipage}
+	\begin{minipage}[t]{0.45\textwidth}
+		\begin{figure}[H]
+			\setlength{\fboxsep}{0pt}
+			\hspace*{0.08\textwidth}
+			\includegraphics[width=1.15\textwidth, angle=-90]{sources/michal.jpg}
+		\end{figure}
+	\end{minipage}
+
+	\vspace*{0.5cm}
+	\begin{table}[H]
+		\renewcommand\tabularxcolumn[1]{m{#1}}
+		\def\arraystretch{\tablestretch}
+		\begin{tabularx}{\textwidth}{l X l X}
+			\tabtitle{4}{doplňující informace}
+			\multicolumn{1}{l}{\ttfamily \MakeUppercase{vzdělání}:} & \multicolumn{3}{>{\hsize=\dimexpr3\hsize+3\tabcolsep+\arrayrulewidth\relax}X}{\ttfamily Criminal Investigation Training Program
+				
+				Federal Law Enforcement Training Program} \\ \midrule
+			\TI{organizace}{CIA}{manželka}{Barbara Crocs}
+			\LTI{vyznamenání}{Distinguished Intelligence Medal}{děti}{Christopher Crocs}
+		\end{tabularx}
+	\end{table}
+	
+	\begin{table}[H]
+		\renewcommand\tabularxcolumn[1]{m{#1}}
+		\def\arraystretch{\tablestretch}
+		\begin{tabularx}{\textwidth}{X}
+			\tabtitle{1}{životopis}
+			\ttfamily 
+			\ind Daniel Crocs byl narozen ve Šternberku. Již v útlém věku prokazoval mimořádné nadání v oblasti techniky a vynikající organizační schopnosti. V osmnácti letech nastoupil do programu Criminal Investigation Training, ve kterém exceloval. Díky jeho zásluhám byl kontaktován CIA a bylo mu nabídnuto vedení sektoru světové kyberbezpečnosti, kde působil 2 roky.
+			
+			\ind Tím odstartoval úspěšnou kariéru na poli CIA, kterou následovalo povýšení na koordinátora boje proti organizovanému zločinu. Roku 2018 se mu podařilo ukončit působení ruské KGB, která se po jeho zásahu rozpadla.\\ \bottomrule[\bottomrulewidth]
+		\end{tabularx}
+	\end{table}
+	
+\end{document}

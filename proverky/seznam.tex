@@ -1,0 +1,82 @@
+%Author: David Tobolik
+
+%class
+\documentclass[landscape, a4paper, 11pt]{article}
+
+%packages
+\usepackage[czech]{babel}           %language
+\usepackage[a4paper, left=0.5cm, top=1cm, right=0.5cm, bottom=1cm]{geometry}		%layout
+\usepackage{graphicx}
+\usepackage{tabularx, booktabs}
+\usepackage{multicol, multirow}
+\usepackage{float}
+\usepackage{makecell}
+\usepackage{pdflscape}
+
+\fontfamily{ttfamily}
+
+%encoding
+\usepackage[IL2]{fontenc}           %font encoding
+\usepackage[utf8]{inputenc}         %script encoding
+
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+
+\newcommand{\blok}[1]{& #1 &&&&&&& \\ \cline{2-9}}
+\newcommand{\lblok}[1]{& #1 &&&&&&& \\ \hline}
+
+\newcommand{\listek}[1]{& #1 &&&&&&& \\ \cline{2-9}}
+\newcommand{\llistek}[1]{& #1 &&&&&&& \\ \hline}
+
+\newcommand{\team}[8]{
+	
+\noindent
+\begin{table}
+	\ttfamily
+	\def\arraystretch{1.5}
+	\catcode`\-=12
+	\begin{tabularx}{\textwidth}{l|p{4.5cm}|X|X|X|X|X|X|X}
+		DIVIZE & JMÉNO & UZLY & VZDUCHOVKY & VYTRVALOST & DECH & EVAKUACE & HVĚZDY & ROSTLINY \\ \hline
+		\multirow{7}{*}{#1} \blok{#2}
+		\blok{#3}
+		\blok{#4}
+		\blok{#5}
+		\blok{#6}
+		\blok{#7}
+		\lblok{#8}
+	\end{tabularx}
+\end{table}
+\begin{table}
+	\ttfamily
+	\def\arraystretch{1.5}
+	\catcode`\-=12
+	\begin{tabularx}{\textwidth}{l|p{4.5cm}|X|X|X|X|X|X|X}
+		DIVIZE & JMÉNO & PŘEŽITÍ & ŠIFRY & BIBLE & LOGIKA & VĚDOMOSTI & PRVNÍ POMOC & OSTATNÍ \\ \hline
+		\multirow{7}{*}{#1} \listek{#2}
+		\listek{#3}
+		\listek{#4}
+		\listek{#5}
+		\listek{#6}
+		\listek{#7}
+		\llistek{#8}
+	\end{tabularx}
+\end{table}
+\pagebreak
+
+}
+
+\begin{document}
+	% 800 1800 3000 4400
+	% max 5 lístečků denně
+	
+	\team{Alfa}{Marie Slimaříková}{Jiří Hiller}{Tereza Soukupová}{Beata Tichá}{Štěpán Chaloupka}{Veronika Kameníčková}{Veronika Kulišťáková}
+	
+	\team{Beta}{Lukáš Tobolík}{Zdiška Slimaříková}{Emma Holubová}{Johanka Kočí}{Michal Němčic}{Martina Ježová}{}
+	
+	\team{Gama}{Alžběta Střítezská}{Metoděj Pudl}{Valerie Novotná}{Lukáš Šuba}{Johana Vaculková}{Tymur  Retiznyk}{Bogdan Palii}
+	
+	\team{Delta}{}{Michal Hudec}{Václav Němčic}{Kristýna Macháčková}{Adéla Povýšilová}{Kryštof Vacula}{Sofie  Kulišťáková}
+	
+	\team{Omega}{Ella Šubová}{Matyáš Roušal}{Michaela Maňásková}{Adriana Kameníčková}{Mariana Kunová}{Jan Střítezský}{Julie Kulišťáková}
+	
+	\team{uni}{}{}{}{}{}{}{}
+\end{document}
